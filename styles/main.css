@@ -1,24 +1,27 @@
 :root {
-    --primary-color: #4a90e2;
-    --secondary-color: #f5a623;
-    --background-color: #f0f2f5;
-    --text-color: #333;
-    --card-background: #fff;
-    --border-radius: 8px;
-    --box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    --primary-color: #E0FFFF; /* Muted gray-blue for subtle contrast */
+    --secondary-color: #fca311; /* Orange */
+    --background-color: #e0f2f7; /* Very light blue */
+    --text-color: #f8f9fa; /* Lighter text for better contrast on gradient */
+    --card-background: rgba(255, 255, 255, 0.3); /* Transparent white */
+    --border-radius: 12px;
+    --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     --spacing-unit: 1rem;
     --font-family-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     --font-family-secondary: 'Georgia', serif;
-    --focus-outline: 2px solid #005fcc;
+    --focus-outline: 2px solid var(--primary-color);
+    --border-color: rgba(255, 255, 255, 0.5); /* Light transparent border */
 }
 
 body {
     font-family: var(--font-family-primary);
-    background-color: var(--background-color);
+    /* Gradient inspired by the Pexels image */
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 25%, #fbc2eb 50%, #a6c1ee 75%, #fbc2eb 100%);
     color: var(--text-color);
     line-height: 1.6;
     margin: 0;
     padding-top: 50px; /* Adjusted for smaller header */
+    min-height: 100vh; /* Ensure gradient covers full height */
 }
 
 body.high-contrast {
@@ -65,19 +68,22 @@ body.high-contrast {
 
 
 header {
-    background: var(--primary-color);
-    color: white;
+    background: rgba(255, 255, 255, 0.4); /* Transparent header */
+    backdrop-filter: blur(8px); /* Blur effect */
+    color: var(--text-color); /* Adjust text color for transparency */
     padding: 0.5rem; /* Smaller padding */
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000;
     text-align: center;
+    box-shadow: var(--box-shadow); /* Subtle shadow */
 }
 
 header h1 {
     font-size: 1.8rem; /* Smaller font size for h1 in header */
     margin: 0; /* Remove default margin */
+    color: var(--primary-color); /* Match primary color */
 }
 
 main {
@@ -86,8 +92,10 @@ main {
     padding: var(--spacing-unit);
 }
 
-.form-section, .quiz-section {
-    background: var(--card-background);
+.form-section, .quiz-section, .word-list-section, .stats-section {
+    background: var(--card-background); /* Transparent background */
+    backdrop-filter: blur(10px); /* Blur effect */
+    border: 1px solid var(--border-color); /* Subtle border */
     padding: calc(var(--spacing-unit) * 1.5);
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
@@ -96,14 +104,6 @@ main {
 
 .hidden {
     display: none !important;
-}
-
-.word-list-section, .quiz-section, .stats-section {
-    background: var(--card-background);
-    padding: calc(var(--spacing-unit) * 1.5);
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    margin-bottom: calc(var(--spacing-unit) * 1.5);
 }
 
 .quiz-section {
@@ -155,15 +155,16 @@ main {
     justify-content: space-between;
     align-items: center;
     padding: var(--spacing-unit);
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-color); /* Adjusted border color */
 }
 
 .word-item {
     transition: all 0.3s ease;
     padding: 0.8rem; /* Smaller padding */
     margin-bottom: 0.5rem; /* Smaller margin */
-    border: 1px solid #eee;
+    border: 1px solid var(--border-color); /* Subtle border */
     border-radius: var(--border-radius);
+    background-color: rgba(255, 255, 255, 0.2); /* Slightly transparent */
 }
 
 .word-item-actions button {
@@ -172,6 +173,7 @@ main {
     border: none;
     cursor: pointer;
     font-size: 1.2rem;
+    color: #495057;
 }
 
 #message-container {
@@ -189,19 +191,22 @@ main {
 }
 
 #message-container.success {
-    background-color: #d4edda;
+    background-color: rgba(212, 237, 218, 0.7); /* Transparent success */
     color: #155724;
     display: block;
 }
 
 #message-container.error {
-    background-color: #f8d7da;
+    background-color: rgba(248, 215, 218, 0.7); /* Transparent error */
     color: #721c24;
     display: block;
 }
 
 input, textarea {
     transition: border-color 0.2s ease;
+    background-color: rgba(255, 255, 255, 0.5); /* Transparent input */
+    border: 1px solid var(--border-color); /* Subtle border */
+    color: var(--text-color);
 }
 
 input:invalid, textarea:invalid {
@@ -229,10 +234,11 @@ textarea {
 
 button {
     background-color: var(--primary-color);
-    color: white;
+    color: #495057;
     border: none;
     cursor: pointer;
     transition: all 0.15s ease;
+    box-shadow: var(--box-shadow);
 }
 
 button:hover {
@@ -244,12 +250,14 @@ h2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: var(--text-color);
 }
 
 /* Styling for the toggle buttons */
 #toggle-add-word, #toggle-word-list, .quiz-toggle-btn {
-    background-color: transparent;
-    color: var(--primary-color);
+    background-color: rgba(255, 255, 255, 0.4); /* Transparent background */
+    backdrop-filter: blur(5px);
+    color: #495057;
     border: 1px solid var(--primary-color);
     border-radius: 50%;
     min-width: 30px; /* Use min-width instead of fixed width */
@@ -260,6 +268,7 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: var(--box-shadow);
 }
 
 #toggle-add-word:hover, #toggle-word-list:hover, .quiz-toggle-btn:hover {
@@ -277,6 +286,8 @@ h2 {
 
 .card {
     background: var(--card-background);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
     padding: 1rem; /* Smaller padding */
@@ -293,7 +304,7 @@ h2 {
 
 .card h2 {
     margin-top: 0;
-    color: var(--primary-color);
+    color: #495057;
     font-family: var(--font-family-secondary);
     font-size: 1.3rem; /* Smaller font size */
 }
@@ -303,19 +314,23 @@ h2 {
     font-size: 0.9rem; /* Smaller font size */
     max-width: 100%; /* Ensure description doesn't exceed card width */
     word-wrap: break-word; /* Break long words */
+    color: #495057;
 }
 
 .card .options button {
     display: block;
     width: 100%;
     margin-bottom: 0.4rem; /* Smaller margin */
-    background-color: var(--secondary-color);
+    background-color: rgba(255, 255, 255, 0.5); /* Transparent button */
+    border: 1px solid var(--border-color); /* Subtle border */
     padding: 0.6rem; /* Smaller padding */
     font-size: 0.9rem; /* Smaller font size */
+    box-shadow: var(--box-shadow);
+    color: #495057; /* Changed to var(--text-color) */
 }
 
 .card .options button:hover {
-    background-color: #d9901d;
+    background-color: var(--secondary-color);
 }
 
 .card.correct {
@@ -327,8 +342,8 @@ h2 {
 }
 
 .card .options button.selected {
-    background-color: #357abd;
-    color: white;
+    background-color: var(--primary-color);
+    color: #495057;
 }
 
 .card .solution {
@@ -342,7 +357,7 @@ footer {
     text-align: center;
     padding: var(--spacing-unit);
     margin-top: calc(var(--spacing-unit) * 2);
-    color: #777;
+    color: var(--text-color);
 }
 
 @media (max-width: 1023px) {
