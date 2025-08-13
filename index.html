@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WordLearn</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <header role="banner">
+        <h1>WordLearn</h1>
+    </header>
+
+    <main id="main-content" role="main">
+        <section class="quiz-section" aria-labelledby="quiz-heading">
+            <h2 id="quiz-heading">Quiz</h2>
+            <button id="start-quiz-btn">Start Quiz</button>
+            <div id="cards-container" role="region" aria-live="polite"></div>
+        </section>
+
+        <section id="stats-dashboard" class="stats-section" aria-labelledby="stats-heading">
+            <h2 id="stats-heading">My Progress</h2>
+            <button id="reset-stats-btn">Reset Statistics</button>
+        </section>
+
+        <section class="form-section" aria-labelledby="add-word-heading">
+            <h2 id="add-word-heading">Add a new word <button id="toggle-add-word">show/hide</button></h2>
+            <div id="add-word-content">
+                <div id="message-container" role="alert"></div>
+                <form id="add-word-form">
+                    <label for="word" class="sr-only">Word</label>
+                    <input type="text" id="word" placeholder="Enter word" required maxlength="50" pattern="[a-zA-Z0-9 ]+">
+                    <label for="translation" class="sr-only">Translation</label>
+                    <input type="text" id="translation" placeholder="Enter translation" required maxlength="50">
+                    <label for="description" class="sr-only">Description</label>
+                    <textarea id="description" placeholder="Enter description" required maxlength="200"></textarea>
+                    <button type="submit">Add Word</button>
+                    <button type="reset">Clear Form</n                </form>
+            </div>
+        </section>
+
+        <section class="word-list-section" aria-labelledby="word-list-heading">
+            <h2 id="word-list-heading">My Words <button id="toggle-word-list">show/hide</button></h2>
+            <div id="word-list-content">
+                <div class="word-list-controls">
+                    <label for="search-box" class="sr-only">Search words</label>
+                    <input type="text" id="search-box" placeholder="Search words...">
+                    <span id="word-counter" aria-live="polite"></span>
+                    <button id="view-toggle" aria-label="Toggle between grid and list view">Toggle View</button>
+                </div>
+                <div id="word-list-container"></div>
+                <div class="data-management-controls">
+                    <button id="export-btn">Export Words</button>
+                    <label for="import-file" class="import-label">Import Words</label>
+                    <input type="file" id="import-file" accept=".json" style="display: none;">
+                    <button id="clear-all-btn">Clear All Data</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <p>&copy; 2025 WordLearn</p>
+        <button id="contrast-toggle">High Contrast Mode</button>
+    </footer>
+
+    <script src="js/storage.js"></script>
+    <script src="js/quiz.js"></script>
+    <script src="js/word-list.js"></script>
+    <script src="js/stats.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
