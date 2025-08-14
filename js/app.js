@@ -17,6 +17,24 @@ document.addEventListener('DOMContentLoaded', () => {
         appVersionElement.textContent = APP_VERSION;
     }
 
+    // Version check and data migration
+    const LAST_USED_VERSION_COOKIE = 'lastUsedAppVersion';
+    const lastUsedVersion = Storage.getCookie(LAST_USED_VERSION_COOKIE);
+
+    if (!lastUsedVersion || lastUsedVersion < APP_VERSION) {
+        console.log(`App version mismatch or no version found. Clearing data and importing default dataset. Old version: ${lastUsedVersion}, Current version: ${APP_VERSION}`);
+        Storage.clearAllWords(); // Clear existing word data
+        localStorage.removeItem('wordLearnStats'); // Clear stats as well
+        importFromDataset(); // Import default dataset
+        Storage.setCookie(LAST_USED_VERSION_COOKIE, APP_VERSION, 365); // Save current version
+    } else {
+        // If version is up to date, just rename the button
+        const importFromDatasetBtn = document.getElementById('import-from-dataset-btn');
+        if (importFromDatasetBtn) {
+            importFromDatasetBtn.textContent = 'Import Default Dataset';
+        }
+    }
+
     // Load Google Charts and render dashboard
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(Stats.renderDashboard);
@@ -310,6 +328,11 @@ function importFromDataset() {
                 showMessage(`${importedCount} new word(s) imported successfully from the dataset!`, 'success');
             } else {
                 showMessage('No new words to import from the dataset.', 'success');
+            }
+            // Rename button after successful import
+            const importFromDatasetBtn = document.getElementById('import-from-dataset-btn');
+            if (importFromDatasetBtn) {
+                importFromDatasetBtn.textContent = 'Import Default Dataset';
             }
         })
         .catch(error => {
