@@ -70,10 +70,30 @@ function setupQuizControls() {
 }
 
 function setupDataManagementControls() {
-    document.getElementById('export-btn').addEventListener('click', exportWords);
-    document.getElementById('import-file').addEventListener('change', importWords);
-    document.getElementById('clear-all-btn').addEventListener('click', clearAllData);
-    document.getElementById('reset-stats-btn').addEventListener('click', () => Stats.resetStats());
+    const exportBtn = document.getElementById('export-btn');
+    if (exportBtn) {
+        exportBtn.addEventListener('click', exportWords);
+    }
+
+    const importFile = document.getElementById('import-file');
+    if (importFile) {
+        importFile.addEventListener('change', importWords);
+    }
+
+    const clearAllBtn = document.getElementById('clear-all-btn');
+    if (clearAllBtn) {
+        clearAllBtn.addEventListener('click', clearAllData);
+    }
+
+    const resetStatsBtn = document.getElementById('reset-stats-btn');
+    if (resetStatsBtn) {
+        resetStatsBtn.addEventListener('click', () => Stats.resetStats());
+    }
+
+    const importFromDatasetBtn = document.getElementById('import-from-dataset-btn');
+    if (importFromDatasetBtn) {
+        importFromDatasetBtn.addEventListener('click', importFromDataset);
+    }
 }
 
 function setupFormValidation() {
@@ -91,6 +111,10 @@ function handleFormSubmit(e) {
 
     if (!form.checkValidity()) {
         showMessage('Please fill out all required fields correctly.', 'error');
+        const firstInvalidField = form.querySelector(':invalid');
+        if (firstInvalidField) {
+            firstInvalidField.focus();
+        }
         return;
     }
 
@@ -212,4 +236,34 @@ function clearAllData() {
         Stats.renderDashboard();
         showMessage('All data has been cleared.', 'success');
     }
+}
+
+function importFromDataset() {
+    console.log("Attempting to import from dataset...");
+    fetch('dataset/words.json')
+        .then(response => {
+            console.log("Fetch response:", response);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("Fetched data:", data);
+            const jsonString = JSON.stringify(data);
+            console.log("JSON string to import:", jsonString);
+            const importedCount = Storage.mergeWords(jsonString);
+            console.log("Imported count:", importedCount);
+            if (importedCount > 0) {
+                WordList.render();
+                Stats.renderDashboard();
+                showMessage(`${importedCount} new word(s) imported successfully from the dataset!`, 'success');
+            } else {
+                showMessage('No new words to import from the dataset.', 'success');
+            }
+        })
+        .catch(error => {
+            console.error('Error importing from dataset:', error);
+            showMessage('Failed to load words from the dataset.', 'error');
+        });
 }

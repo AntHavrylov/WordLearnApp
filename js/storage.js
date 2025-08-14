@@ -121,6 +121,37 @@ class Storage {
         }
     }
 
+    static mergeWords(jsonString) {
+        try {
+            const newWords = JSON.parse(jsonString);
+            if (!Array.isArray(newWords)) {
+                throw new Error("Invalid JSON format: must be an array of word objects.");
+            }
+
+            const existingWords = this.getWords();
+            const existingWordSet = new Set(existingWords.map(word => word.word));
+            let importedCount = 0;
+
+            for (const word of newWords) {
+                if (!word || !word.word || !word.translation) {
+                    console.error("Invalid word object in JSON string, skipping:", word);
+                    continue;
+                }
+                if (!existingWordSet.has(word.word)) {
+                    existingWords.push(word);
+                    existingWordSet.add(word.word);
+                    importedCount++;
+                }
+            }
+
+            this._saveWordsToLocalStorage(existingWords);
+            return importedCount;
+        } catch (error) {
+            console.error("Error importing words:", error);
+            return 0;
+        }
+    }
+
     static _saveWordsToLocalStorage(words) {
         try {
             localStorage.setItem('words', JSON.stringify(words));
