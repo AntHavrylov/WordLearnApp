@@ -99,6 +99,7 @@ function setupQuizControls() {
             // Update selectedArticle in the current word object
             if (Quiz.session && Quiz.session.words[Quiz.session.currentIndex]) {
                 Quiz.session.words[Quiz.session.currentIndex].selectedArticle = e.target.dataset.article;
+                console.log("Selected article updated in session:", Quiz.session.words[Quiz.session.currentIndex].selectedArticle);
             }
 
         } else if (e.target.id === 'next-btn') {

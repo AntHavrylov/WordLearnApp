@@ -36,6 +36,7 @@ class Quiz {
         const currentWord = this.session.words[this.session.currentIndex];
         const options = currentWord.options;
         const learnPercentage = ((currentWord.learnStatus || 0) / 7) * 100;
+        console.log("Rendering question. currentWord.selectedArticle:", currentWord.selectedArticle);
 
         const questionHtml = currentWord.isReverse
             ? `<h2>${currentWord.translation}</h2>
