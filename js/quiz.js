@@ -34,11 +34,19 @@ class Quiz {
 
         const currentWord = this.session.words[this.session.currentIndex];
         const options = currentWord.options;
+        const learnPercentage = ((currentWord.learnStatus || 0) / 7) * 100;
 
         const cardsContainer = document.getElementById('cards-container');
         cardsContainer.innerHTML = `
             <div class="card">
                 <h2>${currentWord.word}</h2>
+                <div class="learn-status">
+                    <span>Learn Process:</span>
+                    <div class="learn-status-bar">
+                        <div class="learn-status-progress" style="width: ${learnPercentage.toFixed(0)}%;"></div>
+                    </div>
+                    <span>${learnPercentage.toFixed(0)}%</span>
+                </div>
                 <p class="description" style="display: ${this.showDescription ? 'block' : 'none'};">${currentWord.description}</p>
                 <button class="toggle-description quiz-toggle-btn">${this.showDescription ? '-' : '+'}</button>
                 <div class="options">
@@ -101,6 +109,24 @@ class Quiz {
         const score = correctAnswers.length;
         const percentage = this.calculateScore(score, this.session.totalQuestions);
         const timeSpent = (this.session.endTime - this.session.startTime) / 1000;
+
+        // --- Update learnStatus ---
+        const allWords = Storage.getWords();
+        correctAnswers.forEach(answeredWord => {
+            const wordToUpdate = allWords.find(w => w.word === answeredWord.word);
+            if (wordToUpdate) {
+                wordToUpdate.learnStatus = Math.min(7, (wordToUpdate.learnStatus || 0) + 1);
+            }
+        });
+        incorrectAnswers.forEach(answeredWord => {
+            const wordToUpdate = allWords.find(w => w.word === answeredWord.word);
+            if (wordToUpdate) {
+                wordToUpdate.learnStatus = Math.max(0, (wordToUpdate.learnStatus || 0) - 1);
+            }
+        });
+        Storage._saveWordsToLocalStorage(allWords);
+        // --- End of update ---
+
 
         const results = {
             score,

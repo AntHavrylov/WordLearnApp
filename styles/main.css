@@ -3,7 +3,7 @@
     --secondary-color: #fca311; /* Orange */
     --background-color: #e0f2f7; /* Very light blue */
     --text-color: #f8f9fa; /* Lighter text for better contrast on gradient */
-    --card-background: rgba(255, 255, 255, 0.3); /* Transparent white */
+    --card-background: rgba(220, 220, 220, 0.35); /* Transparent white */
     --border-radius: 12px;
     --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     --spacing-unit: 1rem;
@@ -68,7 +68,7 @@ body.high-contrast {
 
 
 header {
-    background: rgba(255, 255, 255, 0.4); /* Transparent header */
+    background: rgba(220, 220, 220, 0.45); /* Transparent header */
     backdrop-filter: blur(8px); /* Blur effect */
     color: var(--text-color); /* Adjust text color for transparency */
     padding: 0.5rem; /* Smaller padding */
@@ -108,6 +108,11 @@ main {
 
 .quiz-section {
     margin-top: calc(var(--spacing-unit) * 2); /* Added top margin */
+    margin-bottom: calc(var(--spacing-unit) * 2); /* Added bottom margin */
+}
+
+#start-quiz-btn {
+    margin-bottom: 1rem;
 }
 
 .stats-grid {
@@ -164,7 +169,7 @@ main {
     margin-bottom: 0.5rem; /* Smaller margin */
     border: 1px solid var(--border-color); /* Subtle border */
     border-radius: var(--border-radius);
-    background-color: rgba(255, 255, 255, 0.2); /* Slightly transparent */
+    background-color: rgba(220, 220, 220, 0.25); /* Slightly transparent */
 }
 
 .word-item-actions button {
@@ -191,20 +196,20 @@ main {
 }
 
 #message-container.success {
-    background-color: rgba(212, 237, 218, 0.7); /* Transparent success */
+    background-color: rgba(212, 237, 218, 0.75); /* Transparent success */
     color: #155724;
     display: block;
 }
 
 #message-container.error {
-    background-color: rgba(248, 215, 218, 0.7); /* Transparent error */
+    background-color: rgba(248, 215, 218, 0.75); /* Transparent error */
     color: #721c24;
     display: block;
 }
 
 input, textarea {
     transition: border-color 0.2s ease;
-    background-color: rgba(255, 255, 255, 0.5); /* Transparent input */
+    background-color: rgba(220, 220, 220, 0.55); /* Transparent input */
     border: 1px solid var(--border-color); /* Subtle border */
     color: var(--text-color);
 }
@@ -255,7 +260,7 @@ h2 {
 
 /* Styling for the toggle buttons */
 #toggle-add-word, #toggle-word-list, .quiz-toggle-btn {
-    background-color: rgba(255, 255, 255, 0.4); /* Transparent background */
+    background-color: rgba(220, 220, 220, 0.45); /* Transparent background */
     backdrop-filter: blur(5px);
     color: #495057;
     border: 1px solid var(--primary-color);
@@ -269,6 +274,7 @@ h2 {
     justify-content: center;
     align-items: center;
     box-shadow: var(--box-shadow);
+    margin-bottom: 1rem;
 }
 
 #toggle-add-word:hover, #toggle-word-list:hover, .quiz-toggle-btn:hover {
@@ -280,7 +286,6 @@ h2 {
     display: flex; /* Changed to flex for centering */
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
-    min-height: 200px; /* Ensure enough height for centering */
     gap: calc(var(--spacing-unit) * 1.5);
 }
 
@@ -292,14 +297,35 @@ h2 {
     box-shadow: var(--box-shadow);
     padding: 1rem; /* Smaller padding */
     transition: all 0.3s ease-in-out;
-    width: 400px; /* Fixed width */
-    flex-shrink: 0; /* Prevent shrinking */
-    flex-grow: 0; /* Prevent growing */
+    width: 100%; /* Make width responsive */
+    max-width: 400px; /* Set a max-width */
+    flex-shrink: 1; /* Allow shrinking */
+    flex-grow: 1; /* Allow growing */
 }
 
 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.learn-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.learn-status-bar {
+    flex-grow: 1;
+    height: 10px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+}
+
+.learn-status-progress {
+    height: 100%;
+    background-color: #4caf50;
+    border-radius: 5px;
 }
 
 .card h2 {
@@ -310,6 +336,7 @@ h2 {
 }
 
 .card .description {
+    margin-top: 1rem;
     margin-bottom: 0.8rem; /* Smaller margin */
     font-size: 0.9rem; /* Smaller font size */
     max-width: 100%; /* Ensure description doesn't exceed card width */
@@ -321,7 +348,7 @@ h2 {
     display: block;
     width: 100%;
     margin-bottom: 0.4rem; /* Smaller margin */
-    background-color: rgba(255, 255, 255, 0.5); /* Transparent button */
+    background-color: rgba(220, 220, 220, 0.55); /* Transparent button */
     border: 1px solid var(--border-color); /* Subtle border */
     padding: 0.6rem; /* Smaller padding */
     font-size: 0.9rem; /* Smaller font size */
@@ -384,7 +411,7 @@ footer {
         gap: var(--spacing-unit);
     }
 
-    #cards-container, #word-list-container.grid {
+    #word-list-container.grid {
         grid-template-columns: 1fr;
     }
 

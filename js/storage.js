@@ -138,6 +138,9 @@ class Storage {
                     continue;
                 }
                 if (!existingWordSet.has(word.word)) {
+                    if (word.learnStatus === undefined) {
+                        word.learnStatus = 0;
+                    }
                     existingWords.push(word);
                     existingWordSet.add(word.word);
                     importedCount++;

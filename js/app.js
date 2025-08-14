@@ -121,7 +121,8 @@ function handleFormSubmit(e) {
     const newWord = {
         word: wordInput.value.trim(),
         translation: translationInput.value.trim(),
-        description: descriptionInput.value.trim()
+        description: descriptionInput.value.trim(),
+        learnStatus: 0
     };
 
     if (Storage.saveWord(newWord)) {
