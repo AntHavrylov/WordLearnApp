@@ -46,7 +46,7 @@ class WordList {
             const learnPercentage = ((word.learnStatus || 0) / 7) * 100;
             item.innerHTML = `
                 <div>
-                    <strong>${word.word}</strong>: ${word.translation}
+                    <strong>${word.article ? word.article + ' ' : ''}${word.word}</strong>: ${word.translation}
                     <br>
                     <small>Learn Status: ${learnPercentage.toFixed(0)}%</small>
                 </div>

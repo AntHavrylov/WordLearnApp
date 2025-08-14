@@ -1,6 +1,8 @@
+const APP_VERSION = "v0.0.1";
+
 document.addEventListener('DOMContentLoaded', () => {
     WordList.init();
-    Stats.renderDashboard();
+    // Stats.renderDashboard(); // This will be called by setOnLoadCallback
     setupFormValidation();
     setupQuizControls();
     setupSwipeGestures();
@@ -8,6 +10,16 @@ document.addEventListener('DOMContentLoaded', () => {
     setupWordListToggle();
     setupAddWordToggle();
     setupDataManagementControls(); // Moved this call to the end
+
+    // Display app version
+    const appVersionElement = document.getElementById('app-version');
+    if (appVersionElement) {
+        appVersionElement.textContent = APP_VERSION;
+    }
+
+    // Load Google Charts and render dashboard
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(Stats.renderDashboard);
 });
 
 function setupAddWordToggle() {
@@ -56,11 +68,43 @@ function setupQuizControls() {
     document.getElementById('start-quiz-btn').addEventListener('click', () => Quiz.initializeQuiz());
     document.getElementById('cards-container').addEventListener('click', (e) => {
         if (e.target.classList.contains('option-btn')) {
-            Quiz.handleAnswer(e.target.textContent);
+            // Remove 'selected' from all other option buttons
+            document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+            // Add 'selected' to the clicked button
+            e.target.classList.add('selected');
+        } else if (e.target.classList.contains('article-option-btn')) { // Handle article buttons
+            // Remove 'selected' from all other article buttons
+            document.querySelectorAll('.article-option-btn').forEach(btn => btn.classList.remove('selected'));
+            // Add 'selected' to the clicked article button
+            e.target.classList.add('selected');
+
+            // Update selectedArticle in the current word object
+            if (Quiz.session && Quiz.session.words[Quiz.session.currentIndex]) {
+                Quiz.session.words[Quiz.session.currentIndex].selectedArticle = e.target.dataset.article;
+            }
+
         } else if (e.target.id === 'next-btn') {
-            Quiz.nextCard();
-        } else if (e.target.id === 'prev-btn') {
-            Quiz.previousCard();
+            const nextButton = e.target;
+            if (nextButton.textContent === 'Submit Answer') {
+                // Check answer
+                const selectedOption = document.querySelector('.option-btn.selected'); // Get selected word option
+                if (!selectedOption) {
+                    // Optionally show a message to select an option
+                    return;
+                }
+                Quiz.handleAnswer(selectedOption.textContent); // Pass the selected option
+                Quiz.renderQuestion(); // Re-render to show result and change button text
+                // Disable option buttons and artikel radio buttons
+                document.querySelectorAll('.option-btn').forEach(btn => btn.disabled = true);
+                document.querySelectorAll('input[name="quiz-artikel"]').forEach(radio => radio.disabled = true);
+
+            } else if (nextButton.textContent === 'Next Question') {
+                // Go to next question
+                Quiz.nextCard();
+                // Re-enable option buttons and artikel radio buttons for the new question
+                document.querySelectorAll('.option-btn').forEach(btn => btn.disabled = false);
+                document.querySelectorAll('input[name="quiz-artikel"]').forEach(radio => radio.disabled = false);
+            }
         } else if (e.target.id === 'reset-quiz') {
             Quiz.resetQuiz();
         } else if (e.target.classList.contains('toggle-description')) {
@@ -108,6 +152,10 @@ function handleFormSubmit(e) {
     const wordInput = document.getElementById('word');
     const translationInput = document.getElementById('translation');
     const descriptionInput = document.getElementById('description');
+    
+    // Get the selected radio button value
+    const selectedArticle = form.querySelector('input[name="article"]:checked');
+    const articleValue = selectedArticle ? selectedArticle.value : ''; // Default to empty string if none selected
 
     if (!form.checkValidity()) {
         showMessage('Please fill out all required fields correctly.', 'error');
@@ -122,6 +170,7 @@ function handleFormSubmit(e) {
         word: wordInput.value.trim(),
         translation: translationInput.value.trim(),
         description: descriptionInput.value.trim(),
+        article: articleValue,
         learnStatus: 0
     };
 

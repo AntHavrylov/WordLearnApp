@@ -9,13 +9,14 @@
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <header role="banner">
-        <h1>WordLearn</h1>
+        <h1>Smart learn</h1>
+        <span id="app-version" class="version-label"></span>
     </header>
 
     <main id="main-content" role="main">
         <section class="quiz-section" aria-labelledby="quiz-heading">
             <h2 id="quiz-heading">Quiz</h2>
-            <button id="start-quiz-btn">Start Quiz</button>
+            <button id="start-quiz-btn">Start New Quiz</button>
             <div id="cards-container" role="region" aria-live="polite"></div>
         </section>
 
@@ -29,6 +30,17 @@
             <div id="add-word-content">
                 <div id="message-container" role="alert"></div>
                 <form id="add-word-form">
+                    <div class="article-radio-group">
+                        <label>Article:</label>
+                        <input type="radio" id="article-der" name="article" value="der" required>
+                        <label for="article-der">der</label>
+                        <input type="radio" id="article-die" name="article" value="die">
+                        <label for="article-die">die</label>
+                        <input type="radio" id="article-das" name="article" value="das">
+                        <label for="article-das">das</label>
+                        <input type="radio" id="article-none" name="article" value="" checked>
+                        <label for="article-none">(none)</label>
+                    </div>
                     <label for="word" class="sr-only">Word</label>
                     <input type="text" id="word" placeholder="Enter word" required maxlength="50" pattern="[a-zA-Z0-9 ]+">
                     <label for="translation" class="sr-only">Translation</label>
@@ -36,7 +48,8 @@
                     <label for="description" class="sr-only">Description</label>
                     <textarea id="description" placeholder="Enter description" required maxlength="200"></textarea>
                     <button type="submit">Add Word</button>
-                    <button type="reset">Clear Form</n                </form>
+                    <button type="reset">Clear Form</button>
+                </form>
             </div>
         </section>
 

@@ -1,277 +1,57 @@
 [
-  {
-    "word": "die Anekdote",
-    "translation": "анекдот, коротка кумедна історія",
-    "description": "Уяви, що друзі на вечірці сміються, коли хтось розповідає маленьку і смішну історію — це і є анекдот."
-  },
-  {
-    "word": "die Atmosphäre",
-    "translation": "атмосфера",
-    "description": "Уяви затишну кавʼярню, де у повітрі витала тепла атмосфера дружби й комфорту."
-  },
-  {
-    "word": "das Durcheinander",
-    "translation": "безлад, хаос",
-    "description": "Уяви кімнату після вечірки, де все переплутано й розкидано — суцільний хаос."
-  },
-  {
-    "word": "die Erholung",
-    "translation": "відпочинок, відновлення",
-    "description": "Уяви, як ти лежиш у гамаку біля моря, відчуваючи, як тіло і розум відновлюються."
-  },
-  {
-    "word": "die Fischerei",
-    "translation": "рибальство",
-    "description": "Уяви рибалку з вудкою на березі, який терпляче чекає улову."
-  },
-  {
-    "word": "der Gebrauch",
-    "translation": "використання",
-    "description": "Уяви інструкцію до приладу, де показано, як правильно ним користуватися."
-  },
-  {
-    "word": "der Genuss",
-    "translation": "задоволення, насолода",
-    "description": "Уяви, як ти смакуєш улюблений десерт і відчуваєш повне задоволення."
-  },
-  {
-    "word": "der Gesichtsausdruck",
-    "translation": "вираз обличчя",
-    "description": "Уяви дзеркало, в якому відбивається твоє здивоване або щасливе лице."
-  },
-  {
-    "word": "der Hummer",
-    "translation": "омар",
-    "description": "Уяви великого червоного омара на тарілці в дорогому ресторані."
-  },
-  {
-    "word": "das Kopfnicken",
-    "translation": "кивання головою",
-    "description": "Уяви, як ти стверджувально киваєш головою у знак згоди."
-  },
-  {
-    "word": "der Kutter",
-    "translation": "рибальське судно",
-    "description": "Уяви невеликий човен, що повільно гойдається на хвилях після риболовлі."
-  },
-  {
-    "word": "die Makrele",
-    "translation": "скумбрія",
-    "description": "Уяви свіжу скумбрію на льоду на рибному ринку."
-  },
-  {
-    "word": "die Optimierung",
-    "translation": "оптимізація",
-    "description": "Уяви, що ти налаштовуєш телефон так, щоб він працював швидше і краще."
-  },
-  {
-    "word": "die Pause",
-    "translation": "перерва",
-    "description": "Уяви, що ти робиш паузу, щоб випити кави під час роботи."
-  },
-  {
-    "word": "die Ruhe",
-    "translation": "спокій, тиша",
-    "description": "Уяви тихий ліс і повну відсутність шуму."
-  },
-  {
-    "word": "die Unzufriedenheit",
-    "translation": "незадоволення",
-    "description": "Уяви людину, яка сумно дивиться на зіпсовану страву в ресторані."
-  },
-  {
-    "word": "die Work-Life-Balance",
-    "translation": "баланс між роботою та особистим життям",
-    "description": "Уяви ваги, на одній стороні яких робота, а на іншій — родина і відпочинок."
-  },
-  {
-    "word": "der Abbau",
-    "translation": "демонтаж, скорочення",
-    "description": "Уяви, як ти розбираєш великий конструктор по деталях."
-  },
-  {
-    "word": "die Anmeldebestätigung",
-    "translation": "підтвердження реєстрації",
-    "description": "Уяви лист на емейлі з написом «Ви успішно зареєстровані»."
-  },
-  {
-    "word": "das Anschauungsbeispiel",
-    "translation": "наочний приклад",
-    "description": "Уяви схему чи малюнок, що пояснює завдання простими картинками."
-  },
-  {
-    "word": "der Anschub",
-    "translation": "поштовх (старт)",
-    "description": "Уяви, як хтось штовхає гойдалку, щоб вона почала рухатися."
-  },
-  {
-    "word": "die Ausrichtung",
-    "translation": "напрямок, організація",
-    "description": "Уяви компас, який вказує точний шлях."
-  },
-  {
-    "word": "das Ehrenamt",
-    "translation": "волонтерська робота",
-    "description": "Уяви людину, що допомагає іншим без оплати."
-  },
-  {
-    "word": "das Eigentum",
-    "translation": "власність",
-    "description": "Уяви будинок із табличкою «Приватна власність»."
-  },
-  {
-    "word": "der Eingriff",
-    "translation": "втручання",
-    "description": "Уяви лікаря, що втручається у ситуацію, щоб врятувати пацієнта."
-  },
-  {
-    "word": "das Fechten",
-    "translation": "фехтування",
-    "description": "Уяви двох спортсменів із рапірами у захисних масках."
-  },
-  {
-    "word": "das Hamsterrad",
-    "translation": "бігове колесо для хом’яка",
-    "description": "Уяви хом'ячка, який безкінечно біжить у колесі."
-  },
-  {
-    "word": "der Hindernisparcours",
-    "translation": "смуга перешкод",
-    "description": "Уяви змагання, де треба перестрибувати бар’єри й лазити по канатах."
-  },
-  {
-    "word": "das Kleingartenverein",
-    "translation": "садівниче товариство",
-    "description": "Уяви велику ділянку з маленькими будиночками й квітами."
-  },
-  {
-    "word": "der Lebensraum",
-    "translation": "середовище існування",
-    "description": "Уяви ліс як дім для пташок та звірів."
-  },
-  {
-    "word": "die Mitgliederversammlung",
-    "translation": "збори членів організації",
-    "description": "Уяви велику залу, де члени клубу обговорюють плани."
-  },
-  {
-    "word": "der Mitgliedsbeitrag",
-    "translation": "членський внесок",
-    "description": "Уяви оплату абонемента в спортивний клуб."
-  },
-  {
-    "word": "die Mitgliedschaft",
-    "translation": "членство",
-    "description": "Уяви клубну картку, яка дає привілеї."
-  },
-  {
-    "word": "das Trampolin",
-    "translation": "батут",
-    "description": "Уяви дитину, яка весело стрибає на батуті."
-  },
-  {
-    "word": "die Umweltverschmutzung",
-    "translation": "забруднення довкілля",
-    "description": "Уяви фабрику з димом, що виходить у небо."
-  },
-  {
-    "word": "die Volkshochschule",
-    "translation": "вечірні (дорослі) курси",
-    "description": "Уяви групу дорослих, які вчаться після роботи."
-  },
-  {
-    "word": "das Yoga",
-    "translation": "йога",
-    "description": "Уяви людину в позі лотоса на килимку."
-  },
-  {
-    "word": "der Trachtenverein",
-    "translation": "клуб традиційних костюмів",
-    "description": "Уяви людей у баварських костюмах на святі."
-  },
-  {
-    "word": "das Ökosystem",
-    "translation": "екосистема",
-    "description": "Уяви річку, ліс і тварин як єдиний баланс природи."
-  },
-  {
-    "word": "das bunte Treiben",
-    "translation": "яскраве життя, метушня",
-    "description": "Уяви вуличний ярмарок з музикою й танцями."
-  },
-  {
-    "word": "der eingetragene Verein (e. V.)",
-    "translation": "зареєстроване товариство",
-    "description": "Уяви спортивний клуб із офіційними документами."
-  },
-  {
-    "word": "die Fauna und Flora",
-    "translation": "тваринний і рослинний світ",
-    "description": "Уяви різноманітних тварин і квіти в природі."
-  },
-  {
-    "word": "basteln",
-    "translation": "майструвати",
-    "description": "Уяви, як ти клеїш і вирізаєш аплікацію."
-  },
-  {
-    "word": "betreten",
-    "translation": "входити, ступати",
-    "description": "Уяви, як ти переступаєш поріг будинку."
-  },
-  {
-    "word": "entreten",
-    "translation": "вступати (у клуб), відстоювати (ідею)",
-    "description": "Уяви, як ти заходиш у новий клуб і вітаєшся з усіма."
-  },
-  {
-    "word": "entspannen",
-    "translation": "розслаблятися",
-    "description": "Уяви, що ти лежиш у шезлонгу на пляжі."
-  },
-  {
-    "word": "ermutigen",
-    "translation": "підбадьорювати, надихати",
-    "description": "Уяви тренера, який підтримує свого спортсмена перед змаганням."
-  },
-  {
-    "word": "fördern",
-    "translation": "сприяти, підтримувати",
-    "description": "Уяви учителя, що допомагає учневі розвивати талант."
-  },
-  {
-    "word": "anschluss finden",
-    "translation": "завести знайомства",
-    "description": "Уяви студента, що знаходить нових друзів у гуртожитку."
-  },
-  {
-    "word": "in Rente gehen",
-    "translation": "виходити на пенсію",
-    "description": "Уяви людину, яка йде з роботи востаннє, щоб почати відпочивати."
-  },
-  {
-    "word": "gemeinnützig",
-    "translation": "суспільно корисний",
-    "description": "Уяви благодійну організацію, що допомагає людям."
-  },
-  {
-    "word": "gemeinschaftlich",
-    "translation": "спільний",
-    "description": "Уяви вечірку, яку організували всі разом."
-  },
-  {
-    "word": "harmonisch",
-    "translation": "гармонійний",
-    "description": "Уяви гармонійну мелодію, де всі звуки звучать приємно."
-  },
-  {
-    "word": "inspirierend",
-    "translation": "надихаючий",
-    "description": "Уяви книгу, що після прочитання дає тобі сили діяти."
-  },
-  {
-    "word": "lehrreich",
-    "translation": "повчальний",
-    "description": "Уяви фільм, який навчив тебе чомусь новому."
-  }
+  { "article": "die", "word": "Anekdote", "translation": "анекдот, коротка кумедна історія", "description": "Схоже на «анекдот» — це коротка смішна історія." },
+  { "article": "die", "word": "Atmosphäre", "translation": "атмосфера", "description": "Слово схоже на англійське «atmosphere» — настрій і середовище навколо." },
+  { "article": "das", "word": "Durcheinander", "translation": "безлад, хаос", "description": "Думаємо: «дурдом» — все переплутано і хаотично." },
+  { "article": "die", "word": "Erholung", "translation": "відпочинок, відновлення", "description": "Схоже на «rehabilitation» — відновлення сил." },
+  { "article": "die", "word": "Fischerei", "translation": "рибальство", "description": "Від слова «Fisch» — риба, місце або справа, де ловлять рибу." },
+  { "article": "der", "word": "Gebrauch", "translation": "використання", "description": "Використання чогось за призначенням, як у фразі «in Gebrauch»." },
+  { "article": "der", "word": "Genuss", "translation": "задоволення, насолода", "description": "Якщо щось приносить насолоду — це «Genuss»." },
+  { "article": "der", "word": "Gesichtsausdruck", "translation": "вираз обличчя", "description": "«Gesicht» — обличчя, «Ausdruck» — вираз." },
+  { "article": "der", "word": "Hummer", "translation": "омар", "description": "Великий морський делікатес, червоніє після варіння." },
+  { "article": "das", "word": "Kopfnicken", "translation": "кивання головою", "description": "«Kopf» — голова, «nicken» — кивати." },
+  { "article": "der", "word": "Kutter", "translation": "рибальське судно", "description": "Невеликий човен для риболовлі." },
+  { "article": "die", "word": "Makrele", "translation": "скумбрія", "description": "Вид риби, часто продається копченою або свіжою." },
+  { "article": "die", "word": "Optimierung", "translation": "оптимізація", "description": "Від слова «optimal» — зробити краще і ефективніше." },
+  { "article": "die", "word": "Pause", "translation": "перерва", "description": "Час, щоб зупинитися і відпочити." },
+  { "article": "die", "word": "Ruhe", "translation": "спокій, тиша", "description": "Коли немає шуму — це «Ruhe»." },
+  { "article": "die", "word": "Unzufriedenheit", "translation": "незадоволення", "description": "«Un-» — заперечення, «Zufriedenheit» — задоволення." },
+  { "article": "die", "word": "Work-Life-Balance", "translation": "баланс між роботою та особистим життям", "description": "Англійський термін, що використовується й у німецькій." },
+  { "article": "der", "word": "Abbau", "translation": "демонтаж, скорочення", "description": "«Abbauen» — розбирати або зменшувати щось." },
+  { "article": "die", "word": "Anmeldebestätigung", "translation": "підтвердження реєстрації", "description": "Офіційний документ або повідомлення про успішну реєстрацію." },
+  { "article": "das", "word": "Anschauungsbeispiel", "translation": "наочний приклад", "description": "Приклад, який легко уявити або побачити." },
+  { "article": "der", "word": "Anschub", "translation": "поштовх (старт)", "description": "Щось, що допомагає почати рух або дію." },
+  { "article": "die", "word": "Ausrichtung", "translation": "напрямок, організація", "description": "«Richtung» — напрямок, «ausrichten» — вирівнювати." },
+  { "article": "das", "word": "Ehrenamt", "translation": "волонтерська робота", "description": "Добровільна діяльність без оплати." },
+  { "article": "das", "word": "Eigentum", "translation": "власність", "description": "Те, що належить вам за законом." },
+  { "article": "der", "word": "Eingriff", "translation": "втручання", "description": "Може бути медичне або технічне втручання." },
+  { "article": "das", "word": "Fechten", "translation": "фехтування", "description": "Спорт із рапірами, шпагою або шаблею." },
+  { "article": "das", "word": "Hamsterrad", "translation": "бігове колесо для хом’яка", "description": "Символ нескінченної рутини." },
+  { "article": "der", "word": "Hindernisparcours", "translation": "смуга перешкод", "description": "Траса з перешкодами для змагань." },
+  { "article": "das", "word": "Kleingartenverein", "translation": "садівниче товариство", "description": "Об’єднання власників садових ділянок." },
+  { "article": "der", "word": "Lebensraum", "translation": "середовище існування", "description": "Місце, де живе певний вид." },
+  { "article": "die", "word": "Mitgliederversammlung", "translation": "збори членів організації", "description": "Офіційна зустріч членів клубу чи товариства." },
+  { "article": "der", "word": "Mitgliedsbeitrag", "translation": "членський внесок", "description": "Регулярна оплата за членство." },
+  { "article": "die", "word": "Mitgliedschaft", "translation": "членство", "description": "Статус учасника певної організації." },
+  { "article": "das", "word": "Trampolin", "translation": "батут", "description": "Пристрій для стрибків." },
+  { "article": "die", "word": "Umweltverschmutzung", "translation": "забруднення довкілля", "description": "Коли людина шкодить природі." },
+  { "article": "die", "word": "Volkshochschule", "translation": "вечірні курси", "description": "Навчальний заклад для дорослих." },
+  { "article": "das", "word": "Yoga", "translation": "йога", "description": "Система вправ і медитації." },
+  { "article": "der", "word": "Trachtenverein", "translation": "клуб традиційних костюмів", "description": "Організація, що зберігає культурні традиції." },
+  { "article": "das", "word": "Ökosystem", "translation": "екосистема", "description": "Взаємопов’язане середовище живих істот і природи." },
+  { "article": "das", "word": "bunte Treiben", "translation": "яскраве життя, метушня", "description": "Активна, кольорова подія чи вуличне життя." },
+  { "article": "der", "word": "eingetragene Verein (e. V.)", "translation": "зареєстроване товариство", "description": "Офіційно зареєстрована організація." },
+  { "article": "die", "word": "Fauna und Flora", "translation": "тваринний і рослинний світ", "description": "Всі тварини й рослини певної території." },
+  { "article": "", "word": "basteln", "translation": "майструвати", "description": "Робити щось своїми руками." },
+  { "article": "", "word": "betreten", "translation": "входити, ступати", "description": "Зайти або стати на щось." },
+  { "article": "", "word": "entreten", "translation": "вступати (у клуб), відстоювати (ідею)", "description": "Стати членом організації або підтримати щось." },
+  { "article": "", "word": "entspannen", "translation": "розслаблятися", "description": "Знімати напругу, відпочивати." },
+  { "article": "", "word": "ermutigen", "translation": "підбадьорювати", "description": "Давати комусь сміливість діяти." },
+  { "article": "", "word": "fördern", "translation": "сприяти, підтримувати", "description": "Допомагати розвитку чогось." },
+  { "article": "", "word": "anschluss finden", "translation": "завести знайомства", "description": "Знайти друзів чи компанію." },
+  { "article": "", "word": "in Rente gehen", "translation": "виходити на пенсію", "description": "Припинити роботу за віком." },
+  { "article": "", "word": "gemeinnützig", "translation": "суспільно корисний", "description": "Спрямований на допомогу суспільству." },
+  { "article": "", "word": "gemeinschaftlich", "translation": "спільний", "description": "Робити щось разом." },
+  { "article": "", "word": "harmonisch", "translation": "гармонійний", "description": "Узгоджений і приємний." },
+  { "article": "", "word": "inspirierend", "translation": "надихаючий", "description": "Мотивує діяти або творити." },
+  { "article": "", "word": "lehrreich", "translation": "повчальний", "description": "Містить корисні знання." }
 ]

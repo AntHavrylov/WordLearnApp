@@ -19,7 +19,9 @@ class Stats {
     }
 
     static updateStats(quizResults) {
+        console.log("Updating stats with quizResults:", quizResults); // Add this
         const stats = this.getStats();
+        console.log("Current stats before update:", stats); // Add this
 
         stats.quizzesTaken++;
         stats.studyTime += quizResults.timeSpent;
@@ -58,6 +60,7 @@ class Stats {
         }
 
         this.saveStats(stats);
+        console.log("Stats after update:", stats); // Add this
     }
 
     static renderDashboard() {
@@ -87,35 +90,43 @@ class Stats {
             <div id="quiz-history-chart"></div>
         `;
 
-        this.renderChart(stats.sessionHistory);
+        // Call drawChart directly from here, passing the history
+        // The actual chart drawing will happen in Stats.drawChart
+        this.drawChart(stats.sessionHistory); // Changed from this.renderChart
     }
 
-    static renderChart(history) {
+    static drawChart(history) { // Renamed from renderChart
+        console.log("Rendering chart with history:", history); // Add this
         const chartContainer = document.getElementById('quiz-history-chart');
         if (!chartContainer) return;
 
         if (history.length === 0) {
             chartContainer.innerHTML = '<p>No quiz history available.</p>';
+            console.log("No quiz history available."); // Add this
             return;
         }
 
-        if (!window.google || !window.google.charts) {
-            chartContainer.innerHTML = '<p>Charting library not loaded.</p>';
+        if (!window.google || !window.google.charts || !window.google.visualization) {
+            console.log("Google Charts API not fully loaded yet. Retrying in 100ms...");
+            setTimeout(() => Stats.drawChart(history), 100); // Retry after a short delay
             return;
         }
 
-        google.charts.load('current', {'packages':['corechart']});
-        google.charts.setOnLoadCallback(drawChart);
+        // Ensure the specific chart type is available
+        if (typeof google.visualization.LineChart === 'undefined') {
+            console.log("google.visualization.LineChart is not defined yet. Retrying in 100ms...");
+            setTimeout(() => Stats.drawChart(history), 100); // Retry after a short delay
+            return;
+        }
 
-        function drawChart() {
-            const data = new google.visualization.DataTable();
-            data.addColumn('string', 'Date');
-            data.addColumn('number', 'Score (%)');
+        const data = new google.visualization.DataTable();
+        data.addColumn('string', 'Date');
+        data.addColumn('number', 'Score (%)');
 
-            const rows = history.map(session => [new Date(session.date).toLocaleDateString(), parseFloat(session.percentage)]);
-            data.addRows(rows);
+        const rows = history.map(session => [new Date(session.date).toLocaleDateString(), parseFloat(session.percentage)]);
+        data.addRows(rows);
 
-            const options = {
+        const options = {
                 title: 'Quiz Score History',
                 curveType: 'function',
                 legend: { position: 'bottom' },
@@ -125,7 +136,6 @@ class Stats {
 
             const chart = new google.visualization.LineChart(chartContainer);
             chart.draw(data, options);
-        }
     }
 
     static shuffleArray(array) {

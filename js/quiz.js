@@ -13,10 +13,11 @@ class Quiz {
 
         this.session = {
             words: wordsForQuiz.map(w => {
-                const correctAnswer = w.translation;
-                const distractors = this.generateDistractors(correctAnswer, allWords);
+                const isReverse = w.learnStatus >= 3;
+                const correctAnswer = isReverse ? w.word : w.translation;
+                const distractors = this.generateDistractors(correctAnswer, allWords, isReverse ? 'word' : 'translation');
                 const options = this.shuffleArray([correctAnswer, ...distractors]);
-                return { ...w, answer: null, selected: null, options: options };
+                return { ...w, answer: null, selected: null, options: options, isReverse: isReverse, correctArticle: w.article, selectedArticle: null };
             }), // answer: true, false, or null
             currentIndex: 0,
             score: 0,
@@ -36,10 +37,20 @@ class Quiz {
         const options = currentWord.options;
         const learnPercentage = ((currentWord.learnStatus || 0) / 7) * 100;
 
+        const questionHtml = currentWord.isReverse
+            ? `<h2>${currentWord.translation}</h2>
+               ${currentWord.correctArticle ? `
+               <div class="article-quiz-options">
+                   <button class="article-option-btn ${currentWord.selectedArticle === 'der' ? 'selected' : ''}" data-article="der">der</button>
+                   <button class="article-option-btn ${currentWord.selectedArticle === 'die' ? 'selected' : ''}" data-article="die">die</button>
+                   <button class="article-option-btn ${currentWord.selectedArticle === 'das' ? 'selected' : ''}" data-article="das">das</button>
+               </div>` : ''}`
+            : `<h2>${currentWord.article ? currentWord.article + ' ' : ''}${currentWord.word}</h2>`;
+
         const cardsContainer = document.getElementById('cards-container');
         cardsContainer.innerHTML = `
-            <div class="card">
-                <h2>${currentWord.word}</h2>
+            <div class="card ${currentWord.answer === true ? 'correct' : currentWord.answer === false ? 'incorrect' : ''}">
+                ${questionHtml}
                 <div class="learn-status">
                     <span>Learn Process:</span>
                     <div class="learn-status-bar">
@@ -50,11 +61,10 @@ class Quiz {
                 <p class="description" style="display: ${this.showDescription ? 'block' : 'none'};">${currentWord.description}</p>
                 <button class="toggle-description quiz-toggle-btn">${this.showDescription ? '-' : '+'}</button>
                 <div class="options">
-                    ${options.map(option => `<button class="option-btn ${currentWord.selected === option ? 'selected' : ''}">${option}</button>`).join('')}
+                    ${options.map(option => `<button class="option-btn ${currentWord.selected === option ? 'selected' : ''}" data-option="${option}">${option}</button>`).join('')}
                 </div>
                 <div class="quiz-navigation">
-                    <button id="prev-btn" ${this.session.currentIndex === 0 ? 'disabled' : ''}>Previous</button>
-                    <button id="next-btn">${this.session.currentIndex === this.session.totalQuestions - 1 ? 'Finish' : 'Next'}</button>
+                    <button id="next-btn">${currentWord.answer === null ? 'Submit Answer' : 'Next Question'}</button>
                 </div>
                 <div class="quiz-progress">
                     Question ${this.session.currentIndex + 1} of ${this.session.totalQuestions}
@@ -63,11 +73,12 @@ class Quiz {
         `;
     }
 
-    static generateDistractors(correctAnswer, wordPool) {
+    static generateDistractors(correctAnswer, wordPool, type = 'translation') {
         const distractors = [];
-        const pool = this.shuffleArray(wordPool.filter(w => w.translation !== correctAnswer));
+        const field = type === 'word' ? 'word' : 'translation';
+        const pool = this.shuffleArray(wordPool.filter(w => w[field] !== correctAnswer));
         while (distractors.length < 3 && pool.length > 0) {
-            distractors.push(pool.pop().translation);
+            distractors.push(pool.pop()[field]);
         }
         return distractors;
     }
@@ -76,10 +87,45 @@ class Quiz {
         if (!this.session) return;
 
         const currentWord = this.session.words[this.session.currentIndex];
-        currentWord.selected = selectedOption;
-        currentWord.answer = selectedOption === currentWord.translation;
+        currentWord.selected = selectedOption; // This is the selected word
 
-        this.renderQuestion(); // Re-render to show selection
+        let isCorrectWord = false;
+        let isCorrectArtikel = true; // Assume true if not a reverse question or no artikel selected
+
+        if (currentWord.isReverse) {
+            const selectedArticleButton = document.querySelector('.article-quiz-options button.selected');
+            const selectedArticle = selectedArticleButton ? selectedArticleButton.dataset.article : '';
+
+            isCorrectWord = selectedOption === currentWord.word;
+            isCorrectArtikel = currentWord.correctArticle === '' || selectedArticle === currentWord.correctArticle; // Modified
+
+            currentWord.answer = isCorrectWord && isCorrectArtikel;
+
+            // Store the selected article in the currentWord object
+            currentWord.selectedArticle = selectedArticle;
+
+        } else {
+            isCorrectWord = selectedOption === currentWord.translation;
+            currentWord.answer = isCorrectWord;
+        }
+
+        // Add class to selected option button
+        const selectedOptionButton = document.querySelector(`.option-btn[data-option="${selectedOption}"]`);
+        if (selectedOptionButton) {
+            selectedOptionButton.classList.add('selected');
+        }
+
+        // Add class to card to indicate correct/incorrect
+        const cardElement = document.querySelector('.card');
+        if (cardElement) {
+            if (currentWord.answer === true) {
+                cardElement.classList.add('correct');
+            } else if (currentWord.answer === false) {
+                cardElement.classList.add('incorrect');
+            }
+        }
+
+        // No re-render here. Re-rendering will be handled by app.js after handleAnswer.
     }
 
     static nextCard() {
@@ -137,6 +183,7 @@ class Quiz {
             incorrectAnswers
         };
 
+        console.log("Quiz ended. Results:", results); // Add this
         this.displayResults(results);
         Stats.updateStats(results);
         Stats.renderDashboard();

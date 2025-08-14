@@ -94,7 +94,13 @@ class Storage {
     static exportWords() {
         try {
             const words = this.getWords();
-            return JSON.stringify(words, null, 2);
+            const replacer = (key, value) => {
+                if (key === 'learnStatus') {
+                    return undefined; // Exclude learnStatus from the output
+                }
+                return value;
+            };
+            return JSON.stringify(words, replacer, 2);
         } catch (error) {
             console.error("Error exporting words:", error);
             return null;
@@ -111,6 +117,10 @@ class Storage {
             for (const word of words) {
                 if (!word || !word.word || !word.translation) {
                     throw new Error("Invalid word object in JSON string.");
+                }
+                // Ensure article property exists, default to empty string if not
+                if (word.article === undefined) {
+                    word.article = '';
                 }
             }
             this._saveWordsToLocalStorage(words);
@@ -136,6 +146,10 @@ class Storage {
                 if (!word || !word.word || !word.translation) {
                     console.error("Invalid word object in JSON string, skipping:", word);
                     continue;
+                }
+                // Ensure article property exists, default to empty string if not
+                if (word.article === undefined) {
+                    word.article = '';
                 }
                 if (!existingWordSet.has(word.word)) {
                     if (word.learnStatus === undefined) {

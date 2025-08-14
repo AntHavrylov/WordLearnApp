@@ -76,7 +76,9 @@ header {
     top: 0;
     width: 100%;
     z-index: 1000;
-    text-align: center;
+    display: flex; /* Add this */
+    justify-content: space-between; /* Add this */
+    align-items: center; /* Add this */
     box-shadow: var(--box-shadow); /* Subtle shadow */
 }
 
@@ -84,6 +86,13 @@ header h1 {
     font-size: 1.8rem; /* Smaller font size for h1 in header */
     margin: 0; /* Remove default margin */
     color: var(--primary-color); /* Match primary color */
+}
+
+.version-label {
+    font-size: 0.7rem; /* Smaller font size */
+    color: var(--text-color); /* Consistent color */
+    margin-left: auto; /* Push to the right */
+    padding-right: 1rem; /* Add some padding from the right edge */
 }
 
 main {
@@ -113,6 +122,15 @@ main {
 
 #start-quiz-btn {
     margin-bottom: 1rem;
+    display: block; /* Make it a block element to apply margin auto */
+    margin-left: auto; /* Center horizontally */
+    margin-right: auto; /* Center horizontally */
+}
+
+.quiz-navigation {
+    display: flex; /* Add this */
+    justify-content: flex-end; /* Push content to the right */
+    margin-top: var(--spacing-unit); /* Add some space above */
 }
 
 .stats-grid {
@@ -125,6 +143,7 @@ main {
 #quiz-history-chart {
     width: 100%;
     height: 300px;
+    box-sizing: border-box; /* Add this */
 }
 
 .word-list-controls, .data-management-controls {
@@ -224,7 +243,58 @@ form {
     gap: var(--spacing-unit);
 }
 
-input, textarea, button {
+.article-radio-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Spacing between radio buttons and labels */
+    margin-bottom: var(--spacing-unit); /* Space below the group */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.article-radio-group label {
+    margin-right: 0.5rem; /* Space between label and radio button */
+    color: #495057; /* Ensure text color is consistent */
+}
+
+.article-radio-group input[type="radio"] {
+    /* Basic styling for radio buttons */
+    width: 1rem;
+    height: 1rem;
+    margin: 0; /* Remove default margin */
+    cursor: pointer;
+}
+
+.article-quiz-options {
+    display: flex;
+    justify-content: center; /* Center the radio buttons */
+    gap: 1rem; /* Space between radio buttons */
+    margin-top: 1rem; /* Space above the radio buttons */
+    margin-bottom: 1rem; /* Space below the radio buttons */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.article-quiz-options button {
+    background-color: rgba(220, 220, 220, 0.55); /* Transparent button */
+    border: 1px solid var(--border-color); /* Subtle border */
+    padding: 0.6rem; /* Smaller padding */
+    font-size: 0.9rem; /* Smaller font size */
+    box-shadow: var(--box-shadow);
+    color: #495057;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    border-radius: 4px; /* Match other buttons */
+}
+
+.article-quiz-options button:hover {
+    background-color: var(--secondary-color);
+}
+
+.article-quiz-options button.selected {
+    background-color: var(--primary-color);
+    color: #495057;
+}
+
+input, textarea, button, select {
     font-family: inherit;
     font-size: 1rem;
     padding: calc(var(--spacing-unit) * 0.75);
@@ -401,7 +471,6 @@ footer {
 
     .form-section, .word-list-section, .quiz-section {
         margin: 0;
-        border-radius: 0;
         border-left: none;
         border-right: none;
     }
