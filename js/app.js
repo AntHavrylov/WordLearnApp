@@ -1,4 +1,4 @@
-const APP_VERSION = "v0.0.1";
+const APP_VERSION = "v0.0.2";
 
 document.addEventListener('DOMContentLoaded', () => {
     WordList.init();
