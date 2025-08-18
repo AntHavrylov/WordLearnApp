@@ -1,0 +1,48 @@
+<section class="quiz-section" aria-labelledby="quiz-heading">
+    <h2 id="quiz-heading">Quiz</h2>
+    <button id="start-quiz-btn" *ngIf="!quizService.session" (click)="startQuiz()">Start New Quiz</button>
+    <div id="cards-container" role="region" aria-live="polite" *ngIf="quizService.session && !results">
+        <div class="card" [ngClass]="{'correct': currentWord?.answer === true, 'incorrect': currentWord?.answer === false}">
+            <ng-container *ngIf="currentWord">
+                <div *ngIf="currentWord.isReverse; else standardQuestion">
+                    <h2>{{ currentWord.translation }}</h2>
+                    <div class="article-quiz-options" *ngIf="currentWord.correctArticle">
+                        <button class="article-option-btn" *ngFor="let article of ['der', 'die', 'das']" [class.selected]="selectedArticle === article" (click)="selectArticle(article)">{{ article }}</button>
+                    </div>
+                </div>
+                <ng-template #standardQuestion>
+                    <h2>{{ currentWord.article ? currentWord.article + ' ' : '' }}{{ currentWord.word }}</h2>
+                </ng-template>
+
+                <div class="learn-status">
+                    <span>Learn Process:</span>
+                    <div class="learn-status-bar">
+                        <div class="learn-status-progress" [style.width.%]="(currentWord.learnStatus || 0) / 7 * 100"></div>
+                    </div>
+                    <span>{{ (currentWord.learnStatus || 0) / 7 * 100 | number:'1.0-0' }}%</span>
+                </div>
+
+                <p class="description" *ngIf="showDescription">{{ currentWord.description }}</p>
+                <button class="toggle-description quiz-toggle-btn" (click)="toggleDescription()">{{ showDescription ? '-' : '+' }}</button>
+
+                <div class="options">
+                    <button *ngFor="let option of currentWord.options" class="option-btn" [class.selected]="selectedOption === option" (click)="selectOption(option)">{{ option }}</button>
+                </div>
+
+                <div class="quiz-navigation">
+                    <button id="next-btn" (click)="next()">{{ currentWord.answer === null ? 'Submit Answer' : 'Next Question' }}</button>
+                </div>
+
+                <div class="quiz-progress">
+                    Question {{ quizService.session.currentIndex + 1 }} of {{ quizService.session.totalQuestions }}
+                </div>
+            </ng-container>
+        </div>
+    </div>
+    <div class="card quiz-results" *ngIf="results">
+        <h2>Quiz Complete!</h2>
+        <p>Your score: {{ results.score }} / {{ results.totalQuestions }} ({{ results.percentage }}%)</p>
+        <p>Time spent: {{ results.timeSpent | number:'1.2-2' }} seconds</p>
+        <button id="reset-quiz" (click)="startQuiz()">Start New Quiz</button>
+    </div>
+</section>

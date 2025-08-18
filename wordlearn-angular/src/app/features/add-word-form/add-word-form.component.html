@@ -1,0 +1,27 @@
+<section class="form-section" aria-labelledby="add-word-heading">
+    <h2 id="add-word-heading">Add a new word <button (click)="toggleForm()">{{ isVisible ? '-' : '+' }}</button></h2>
+    <div id="add-word-content" *ngIf="isVisible">
+        <div id="message-container" role="alert" [ngClass]="messageType">{{ message }}</div>
+        <form [formGroup]="addWordForm" (ngSubmit)="onSubmit()">
+            <div class="article-radio-group">
+                <label>Article:</label>
+                <input type="radio" id="article-der" formControlName="article" value="der">
+                <label for="article-der">der</label>
+                <input type="radio" id="article-die" formControlName="article" value="die">
+                <label for="article-die">die</label>
+                <input type="radio" id="article-das" formControlName="article" value="das">
+                <label for="article-das">das</label>
+                <input type="radio" id="article-none" formControlName="article" value="">
+                <label for="article-none">(none)</label>
+            </div>
+            <label for="word" class="sr-only">Word</label>
+            <input type="text" id="word" placeholder="Enter word" formControlName="word" required maxlength="50" pattern="[a-zA-Z0-9 ]+">
+            <label for="translation" class="sr-only">Translation</label>
+            <input type="text" id="translation" placeholder="Enter translation" formControlName="translation" required maxlength="50">
+            <label for="description" class="sr-only">Description</label>
+            <textarea id="description" placeholder="Enter description" formControlName="description" required maxlength="200"></textarea>
+            <button type="submit" [disabled]="!addWordForm.valid">Add Word</button>
+            <button type="reset" (click)="addWordForm.reset()">Clear Form</button>
+        </form>
+    </div>
+</section>
